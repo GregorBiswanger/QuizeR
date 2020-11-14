@@ -1,0 +1,52 @@
+﻿@page "/QuizBoard"
+
+<h3>@CountDown @if (@CountDown < 10) {<em> - Hurry up!</em> }</h3>
+
+<div class="row">
+    @if (!string.IsNullOrEmpty(Outcome))
+    {
+        @if (AnswerWasCorrect)
+        {
+            <div class="alert alert-success" role="alert">
+                @Outcome
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                @Outcome
+            </div>
+        }
+
+        <div>
+            Your current score: @Score
+        </div>
+    }
+</div>
+
+<div class="row vh-100">
+    <div class="col-12 text-center">
+        <h1>@Question</h1>
+    </div>
+
+    @if(QuizService.IsAdmin) 
+    {
+        <Admin></Admin>
+    }
+
+    @if (IsAnswersChoiceVisible && !QuizService.IsAdmin)
+    {
+        <div class="col-6">
+            <button @onclick="@(async () => await ChooseAnswer("A"))">A</button>
+        </div>
+        <div class="col-6">
+            <button @onclick="@(async () => await ChooseAnswer("B"))">B</button>
+        </div>
+        <div class="col-6">
+            <button @onclick="@(async () => await ChooseAnswer("C"))">C</button>
+        </div>
+        <div class="col-6">
+            <button @onclick="@(async () => await ChooseAnswer("D"))">D</button>
+        </div>
+    }
+</div>

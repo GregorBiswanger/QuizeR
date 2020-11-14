@@ -1,0 +1,18 @@
+﻿@page "/Players"
+
+<div class="d-flex flex-column vh-100">
+    <h3>Spieler</h3>
+
+    <ul>
+        @foreach (var playerName in PlayerNames)
+        {
+            <li>@playerName</li>
+        }
+    </ul>
+
+    @if(QuizService.IsAdmin)
+    {
+        <Admin></Admin>
+    }
+</div>
+

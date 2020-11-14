@@ -1,0 +1,20 @@
+﻿@page "/ScoreBoard"
+
+@if (IsGameOver)
+{
+    <h1>Game Over</h1>
+}
+
+<h3>Die richtige Antwort war: @Answer</h3>
+
+<ol>
+    @foreach (var player in Players)
+    {
+        <li>@player.Name - @player.Score Punkte</li>
+    }
+</ol>
+
+@if (QuizService.IsAdmin)
+{
+    <Admin></Admin>
+}
